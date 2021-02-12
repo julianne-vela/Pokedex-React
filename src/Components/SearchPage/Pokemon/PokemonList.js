@@ -11,23 +11,11 @@ export default class PokemonList extends Component {
         searchQuery: '',
     }
 
-    handleQueryChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            searchQuery: e.target.value
-        })
-    }
+
     render() {
 
         return (
             <>
-                <input placeholder='Search by Name'
-                    onChange={this.handleQueryChange}
-                />
-                <select>
-                    <option></option>
-                </select>
-
                 <ul className='pokemonList'>
                     {this.state.pokeData.map(pokeObject =>
                         <PokeItem
