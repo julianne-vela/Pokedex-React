@@ -8,20 +8,25 @@ export default class PokemonList extends Component {
         pokeName: '',
         sortOrder: '',
         sortBy: 'pokeName',
-        query: '',
+        searchQuery: '',
     }
 
+    handleQueryChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            searchQuery: e.target.value
+        })
+    }
     render() {
-
 
         return (
             <>
-                <form>
-                    <input type='text' className='query' placeholder='Search by Name' />
-                    <select>
-                        <option></option>
-                    </select>
-                </form>
+                <input placeholder='Search by Name'
+                    onChange={this.handleQueryChange}
+                />
+                <select>
+                    <option></option>
+                </select>
 
                 <ul className='pokemonList'>
                     {this.state.pokeData.map(pokeObject =>
