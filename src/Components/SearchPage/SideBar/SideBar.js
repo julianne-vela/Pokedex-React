@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
+import RadioFilter from './RadioFilter';
 import SearchBar from './SearchBar'
 import SortMenu from './SortMenu.js';
 
 export default class SideBar extends Component {
     render() {
         const {
+            pokeData,
             searchQuery,
-            typeOptions,
             handleQueryChange,
-            handleTypeChange,
-            filterSelected
+            sortBy,
+            sortOrder,
+            handleSortBy,
+            sortAscending,
+            sortDescending,
+            radioFilterSelected,
+            handleRadioChange,
         } = this.props
 
         return (
@@ -19,12 +25,19 @@ export default class SideBar extends Component {
                     searchQuery={searchQuery}
                     handleChange={handleQueryChange}
                 />
-                <p className='label'>Filter By: </p>
+                <p className='label'>Sort</p>
                 <SortMenu className='sortMenu'
-                    typeOptions={typeOptions}
-                    filterOption='Type: '
-                    handleChange={handleTypeChange}
-                    filterSelected={filterSelected}
+                    pokeData={pokeData}
+                    sortBy={sortBy}
+                    sortOrder={sortOrder}
+                    handleSortBy={handleSortBy}
+                    sortAscending={sortAscending}
+                    sortDescending={sortDescending}
+                />
+                <p className='label'>Filter By</p>
+                <RadioFilter className='radio'
+                    radioFilterSelected={radioFilterSelected}
+                    handleRadioChange={handleRadioChange}
                 />
             </aside>
         )

@@ -4,25 +4,25 @@ export default class SortMenu extends Component {
 
     render() {
         const {
-            handleChange,
-            typeOptions,
-            filterOption,
+            handleSortBy,
+            sortAscending,
+            sortDescending,
         } = this.props
 
-        const options = typeOptions.map(option => <option value={option.value} key={option}>{option}</option>)
+        const sortOptions = ['Pokemon', 'Type', 'HP', 'Attack', 'Defense']
 
+        const options = sortOptions.map(option => <option value={option.value} key={option}>{option}</option>)
 
         return (
             <>
-                <label className='sortMenu'>
-                    {filterOption}
-                    <select className='filter'
-                        onChange={handleChange}
-                    >
-                        <option value='all'>All</option>
-                        {options}
-                    </select>
-                </label>
+                <select className='sortMenu'
+                    onChange={handleSortBy}
+                >
+                    {options}
+                </select>
+
+                <button className='sortBtn' onClick={(e) => sortAscending}>Ascending</button>
+                <button className='sortBtn' onClick={(e) => sortDescending}>Decending</button>
             </>
         )
     }
