@@ -1,0 +1,25 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: .75fr 3fr;
+    grid-template-rows: 0.25fr 1fr 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas:
+      ". applied-filters"
+      "sidebar pokemon-list"
+      "sidebar pokemon-list"
+      "sidebar pokemon-list"
+      "sidebar pokemon-list";
+      width: auto;
+      content: '';
+      clear: both;
+}
+
+.float {
+    float: left;
+}
+
+.applied-filters { 
+    grid-area: applied-filters; 
+    border: 8px solid gold;
+}
+  

@@ -1,33 +1,26 @@
 import React, { Component } from 'react'
+import { capFirstLetter } from '../../MungeUtils/GeneralUtils.js';
 import PokeItem from './PokemonItem.js';
-import pokeData from '../../../data.js';
 
 export default class PokemonList extends Component {
-    state = {
-        pokeData: pokeData,
-        pokeName: '',
-        sortOrder: '',
-        sortBy: 'pokeName',
-        searchQuery: '',
-    }
 
 
     render() {
+        const { filteredPokemon } = this.props
 
         return (
-            <>
-                <ul className='pokemonList'>
-                    {this.state.pokeData.map(pokeObject =>
-                        <PokeItem
-                            key={pokeObject._id}
-                            pokeImage={pokeObject.url_image}
-                            pokeName={pokeObject.pokemon}
-                            pokeType={pokeObject.type_1}
-                            pokeHp={pokeObject.hp}
-                            pokeDef={pokeObject.defense}
-                        />)}
-                </ul>
-            </>
+            <content className='pokemon-list float'>
+                {filteredPokemon.map(pokeObject =>
+                    <PokeItem
+                        key={pokeObject._id}
+                        pokeImage={pokeObject.url_image}
+                        pokeName={capFirstLetter(pokeObject.pokemon)}
+                        pokeType={capFirstLetter(pokeObject.type_1)}
+                        pokeHp={pokeObject.hp}
+                        pokeAtt={pokeObject.attack}
+                        pokeDef={pokeObject.defense}
+                    />)}
+            </content>
         );
     }
 }

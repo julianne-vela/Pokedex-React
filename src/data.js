@@ -464,3 +464,12 @@ export default [
         'pokedex': 'http://www.pokemon.com/us/pokedex/pidgey'
     }
 ]
+
+export const colorByType = {
+    grass: '#78C850',
+    fire: '#F08030',
+    water: '#6890F0',
+    bug: '#A8B820',
+    normal: '#A8A878',
+    poison: '#A040A0',
+}

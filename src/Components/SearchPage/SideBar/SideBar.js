@@ -1,28 +1,32 @@
 import React, { Component } from 'react'
 import SearchBar from './SearchBar'
-// import Sort from './Sort.js';
+import SortMenu from './SortMenu.js';
 
 export default class SideBar extends Component {
     render() {
         const {
             searchQuery,
-            // sortBy,
-            handleChange,
-            // handleFilterChange
+            typeOptions,
+            handleQueryChange,
+            handleTypeChange,
+            filterSelected
         } = this.props
 
-        console.log(searchQuery);
         return (
-            <>
-                <SearchBar
+            <aside className='sidebar float'>
+                <p className='label'>Search by Pokemon</p>
+                <SearchBar className='searchBar'
                     searchQuery={searchQuery}
-                    handleChange={handleChange}
+                    handleChange={handleQueryChange}
                 />
-                {/* <Sort
-                    sortBy={sortBy}
-                    handleChange={handleFilterChange}
-                /> */}
-            </>
+                <p className='label'>Filter By: </p>
+                <SortMenu className='sortMenu'
+                    typeOptions={typeOptions}
+                    filterOption='Type: '
+                    handleChange={handleTypeChange}
+                    filterSelected={filterSelected}
+                />
+            </aside>
         )
     }
 }

@@ -1,0 +1,18 @@
+.sidebar { 
+    grid-area: sidebar; 
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.label {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Futura Condensed Med';
+    margin: 5px 0;
+    background-color: var(--color4);
+    color: var(--color3);
+    border: 2px solid var(--color3);
+    border-radius: 10px;
+    padding: 3px;
+}
