@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
 
 export default class SortMenu extends Component {
-
     render() {
         const {
-            handleSortBy,
-            sortBtnHandler
+            sortByValues,
+            handleSortSelected,
+            sortAsc,
+            sortDesc,
+            // handleSortOrder,
+            // sortAndUpdate,
         } = this.props
 
-        const sortOptions = ['Pokemon', 'Type', 'HP', 'Attack', 'Defense']
+        // console.log(handleSortSelected);
+        // console.log(sortByValues);
 
-        const options = sortOptions.map(option => <option value={option.value} key={option}>{option}</option>)
+        const options = sortByValues.map(option => <option value={option} key={option}>{option}</option>)
+
 
         return (
-            <>
+            <aside>
                 {/* DropDown Sort By */}
                 <select className='dropdown'
-                    onChange={handleSortBy}>
+                    onChange={handleSortSelected}>
                     {options}
                 </select>
 
                 {/* Sort Ascending/Descending Buttons */}
-                <button className='sortBtn' value='ascending' onClick={sortBtnHandler}>Ascending</button>
-                <button className='sortBtn' value='descending' onClick={sortBtnHandler}>Decending</button>
-            </>
+                <button className='sortBtn' value='ascending' onClick={sortAsc}>Ascending</button>
+                <button className='sortBtn' value='descending' onClick={sortDesc}>Descending</button>
+
+            </aside >
         )
     }
 }

@@ -6,46 +6,52 @@ import pokeData from '../../data.js';
 import AppliedFilters from './AppliedFilters.js';
 import PokemonList from './Pokemon/PokemonList';
 import SideBar from './SideBar/SideBar.js';
-import { sort } from '../MungeUtils/SortUtils.js';
 
 export default class SearchPage extends Component {
     state = {
         pokeData: pokeData,
         searchQuery: '',
-        sortOrder: 'ascending',
-        sortBy: 'Pokemon',
+        // sortOrder: 'ascending',
+        sortBy: ['pokemon', 'type_1', 'attack', 'defense', 'hp'],
+        sortSelected: 'pokemon',
         tFilterSelected: 'all',
     }
 
-    handleQueryChange = (event) => {
-        this.setState({
-            searchQuery: event.target.value
+    sortAsc = () => {
+        this.setState(prevState => {
+            this.state.pokeData.sort((a, b) => (a[this.state.sortSelected] - b[this.state.sortSelected]))
         })
     }
 
-    handleSortBy = (event) => {
-        this.setState({
-            sortBy: event.target.value
+    sortDesc = () => {
+        this.setState(prevState => {
+            this.state.pokeData.sort((a, b) => (b[this.state.sortSelected] - a[this.state.sortSelected]))
         })
     }
 
-    handleSortOrder = (event) => {
+    // sortAndUpdate = (callback) => {
+    //     const sortedPokemon = callback()
+
+    //     this.setState({ pokeData: sortedPokemon })
+    // }
+
+    handleQueryChange = (e) => {
         this.setState({
-            sortOrder: event.target.value
+            searchQuery: e.target.value
         })
     }
 
-    sortFunction = () => {
-        sort(
-            this.state.pokeData,
-            this.state.sortBy,
-            this.state.sortOrder)
+    handleSortSelected = (e) => {
+        this.setState({
+            sortSelected: e.target.value
+        })
     }
 
-    sortBtnHandler = () => {
-        this.handleSortOrder()
-        this.sortFunction()
-    }
+    // handleSortOrder = (e) => {
+    //     this.setState({
+    //         sortOrder: e.target.value
+    //     })
+    // }
 
     // handleRadioChange = (e) => {
     //     e.preventDefault()
@@ -54,32 +60,65 @@ export default class SearchPage extends Component {
     //     })
     // }
 
-    render() {
+    // sort = () => {
+    //     if (this.state.sortSelected === "attack" || this.state.sortSelected === "defense" || this.state.sortSelected === "hp") {
+    //         if (this.state.sortOrder === 'ascending') {
+    //             pokeData.sort((a, b) => a[this.state.sortSelected] - b[this.state.sortSelected])
+    //         } else {
+    //             pokeData.sort((a, b) => b[this.state.sortSelected] - a[this.state.sortSelected])
+    //         }
+    //     } else {
+    //         if (this.state.sortOrder === 'ascending') {
+    //             pokeData.sort((a, b) => a[this.state.sortSelected].localeCompare(b[this.state.sortSelected]))
+    //         } else {
+    //             pokeData.sort((a, b) => b[this.state.sortSelected].localeCompare(a[this.state.sortSelected]))
+    //         }
+    //     }
+    // }
 
+    render() {
         const {
             pokeData,
+            sortBy,
+            sortSelected,
+            // sortOrder,
             searchQuery,
             tFilterSelected,
         } = this.state
 
+        // const filteredPokemon = pokeData.filter(pokeObject => {
+        //     if (searchQuery === '') return pokeData;
+        //     if (pokeObject.pokemon.includes(searchQuery)) return true;
+        //     return filteredPokemon;
+        // });
+
         const filteredList = pokeData.filter(pokeObject => {
-            return pokeObject['pokemon'].includes(searchQuery) || pokeObject['type_1'].includes(tFilterSelected);
+            return pokeObject['pokemon'].includes(this.state.searchQuery) || pokeObject['type_1'].includes(tFilterSelected);
         });
 
+        // if (sortOrder === 'ascending') {
+        //     pokeData.sort((a, b) => a[sortBy] - (b[sortBy]))
+        // }
+        // else pokeData.sort((a, b) => b[sortBy] - (a[sortBy]))
 
         return (
-            <main className='grid-container'>
+            <main className='grid-container' >
                 {/* SideBar Module */}
-                <SideBar className='sidebar float'
+                < SideBar className='sidebar float'
                     // Search Bar //
                     searchValue={searchQuery}
                     handleQueryChange={this.handleQueryChange}
 
                     // Sort Asc/Desc //
-                    handleSortBy={this.handleSortBy}
-                    handleSortOrder={this.handleSortOrder}
-                    sortFunction={this.sortFunction}
-                    sortBtnHandler={this.sortBtnHandler}
+                    sortByValues={sortBy}
+                    // sortOrderValue={sortOrder}
+                    sortSelected={sortSelected}
+                    handleSortSelected={this.handleSortSelected}
+                    sortAsc={this.sortAsc}
+                    sortDesc={this.sortDesc}
+
+                    // handleSortOrder={this.handleSortOrder}
+                    // sortAndUpdate={(e) => { this.sort() }}
 
                     // Radio Filters //
                     radioSelectedValue={tFilterSelected}
@@ -87,13 +126,13 @@ export default class SearchPage extends Component {
                 />
 
                 {/* Applied Filters - options stretch */}
-                <AppliedFilters className='applied-filters' />
+                < AppliedFilters className='applied-filters' />
 
                 {/* PokeList Module */}
-                <PokemonList className='pokemon-list float'
+                < PokemonList className='pokemon-list float'
                     filteredPokemon={filteredList}
                 />
-            </main>
+            </main >
         )
     }
 }

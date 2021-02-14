@@ -8,10 +8,13 @@ export default class SideBar extends Component {
         const {
             searchValue,
             handleQueryChange,
-            handleSortBy,
-            handleSortOrder,
-            sortFunction,
-            sortBtnHandler,
+            sortByValues,
+            sortSelected,
+            handleSortSelected,
+            sortAsc,
+            sortDesc,
+            // handleSortOrder,
+            // sortAndUpdate,
             radioFilterSelected,
             handleRadioChange,
         } = this.props
@@ -28,10 +31,13 @@ export default class SideBar extends Component {
                 {/* Sort menu */}
                 <p className='label'>Sort</p>
                 <SortMenu className='sortMenu'
-                    handleSortBy={handleSortBy}
-                    handleSortOrder={handleSortOrder}
-                    sortFunction={sortFunction}
-                    sortBtnHandler={sortBtnHandler}
+                    sortByValues={sortByValues}
+                    sortSelected={sortSelected}
+                    handleSortSelected={handleSortSelected}
+                    sortAsc={sortAsc}
+                    sortDesc={sortDesc}
+                // handleSortOrder={handleSortOrder}
+                // sortAndUpdate={sortAndUpdate}
                 />
 
                 {/* Radio Filters */}
