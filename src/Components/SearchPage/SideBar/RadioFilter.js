@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { uniqueTypes } from '../../MungeUtils/SortUtils.js';
 
 export default class RadioFilter extends Component {
     render() {

@@ -5,8 +5,7 @@ export default class SortMenu extends Component {
     render() {
         const {
             handleSortBy,
-            sortAscending,
-            sortDescending,
+            sortBtnHandler
         } = this.props
 
         const sortOptions = ['Pokemon', 'Type', 'HP', 'Attack', 'Defense']
@@ -15,14 +14,15 @@ export default class SortMenu extends Component {
 
         return (
             <>
-                <select className='sortMenu'
-                    onChange={handleSortBy}
-                >
+                {/* DropDown Sort By */}
+                <select className='dropdown'
+                    onChange={handleSortBy}>
                     {options}
                 </select>
 
-                <button className='sortBtn' onClick={(e) => sortAscending}>Ascending</button>
-                <button className='sortBtn' onClick={(e) => sortDescending}>Decending</button>
+                {/* Sort Ascending/Descending Buttons */}
+                <button className='sortBtn' value='ascending' onClick={sortBtnHandler}>Ascending</button>
+                <button className='sortBtn' value='descending' onClick={sortBtnHandler}>Decending</button>
             </>
         )
     }

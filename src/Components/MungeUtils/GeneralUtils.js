@@ -5,3 +5,4 @@ export function capFirstLetter(strInput) {
     }
     return separatedWords.join(' ');
 }
+

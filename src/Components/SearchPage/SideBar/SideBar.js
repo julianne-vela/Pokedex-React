@@ -6,36 +6,37 @@ import SortMenu from './SortMenu.js';
 export default class SideBar extends Component {
     render() {
         const {
-            pokeData,
-            searchQuery,
+            searchValue,
             handleQueryChange,
-            sortBy,
-            sortOrder,
             handleSortBy,
-            sortAscending,
-            sortDescending,
+            handleSortOrder,
+            sortFunction,
+            sortBtnHandler,
             radioFilterSelected,
             handleRadioChange,
         } = this.props
 
         return (
             <aside className='sidebar float'>
+                {/* search bar */}
                 <p className='label'>Search by Pokemon</p>
                 <SearchBar className='searchBar'
-                    searchQuery={searchQuery}
+                    searchValue={searchValue}
                     handleChange={handleQueryChange}
                 />
+
+                {/* Sort menu */}
                 <p className='label'>Sort</p>
                 <SortMenu className='sortMenu'
-                    pokeData={pokeData}
-                    sortBy={sortBy}
-                    sortOrder={sortOrder}
                     handleSortBy={handleSortBy}
-                    sortAscending={sortAscending}
-                    sortDescending={sortDescending}
+                    handleSortOrder={handleSortOrder}
+                    sortFunction={sortFunction}
+                    sortBtnHandler={sortBtnHandler}
                 />
+
+                {/* Radio Filters */}
                 <p className='label'>Filter By</p>
-                <RadioFilter className='radio'
+                <RadioFilter className='radioFilter'
                     radioFilterSelected={radioFilterSelected}
                     handleRadioChange={handleRadioChange}
                 />
