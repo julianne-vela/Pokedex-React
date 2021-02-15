@@ -1,45 +1,30 @@
 import React, { Component } from 'react'
+import { capFirstLetter } from '../../MungeUtils/GeneralUtils.js';
 import PokeItem from './PokemonItem.js';
-import pokeData from '../../../data.js';
 
 export default class PokemonList extends Component {
-    state = {
-        pokeData: pokeData,
-        pokeName: '',
-        sortOrder: '',
-        sortBy: 'pokeName',
-        searchQuery: '',
-    }
 
-    handleQueryChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            searchQuery: e.target.value
-        })
-    }
+
     render() {
+        const { filteredPokemon, pokeData } = this.props
 
         return (
-            <>
-                <input placeholder='Search by Name'
-                    onChange={this.handleQueryChange}
-                />
-                <select>
-                    <option></option>
-                </select>
-
-                <ul className='pokemonList'>
-                    {this.state.pokeData.map(pokeObject =>
-                        <PokeItem
-                            key={pokeObject._id}
-                            pokeImage={pokeObject.url_image}
-                            pokeName={pokeObject.pokemon}
-                            pokeType={pokeObject.type_1}
-                            pokeHp={pokeObject.hp}
-                            pokeDef={pokeObject.defense}
-                        />)}
-                </ul>
-            </>
+            <content className='pokemon-list float'>
+                {filteredPokemon.map(pokeObject =>
+                    <PokeItem
+                        pokeData={pokeData}
+                        key={pokeObject._id}
+                        pokeImage={pokeObject.url_image}
+                        pokeName={capFirstLetter(pokeObject.pokemon)}
+                        pokeType={capFirstLetter(pokeObject.type_1)}
+                        pokeHp={pokeObject.hp}
+                        pokeAtt={pokeObject.attack}
+                        pokeDef={pokeObject.defense}
+                        pokeColor1={pokeObject.color_1}
+                        pokeColor2={pokeObject.color_2}
+                        pokeColor3={pokeObject.color_f}
+                    />)}
+            </content>
         );
     }
 }

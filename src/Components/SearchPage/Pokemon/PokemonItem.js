@@ -9,18 +9,36 @@ export default class PokemonItem extends Component {
             pokeType,
             pokeHp,
             pokeDef,
+            pokeAtt,
+            pokeColor1,
+            pokeColor2,
+            pokeColor3,
         } = this.props
 
         return (
-            <li className='pokemonItem'>
-                <label className='name'>{pokeName}</label>
-                <img alt='pokemon sprite' src={pokeImage} />
-                <p className='stats'>
-                    <span>Type: {pokeType}</span><br></br>
-                    <span>HP: {pokeHp}</span><br></br>
-                    <span>Defense: {pokeDef}</span>
+            <div className='pokemonItem'
+                style={{
+                    backgroundColor: `${pokeColor1}`
+                }}>
+                <label className='name'
+                    style={{
+                        backgroundColor: `${pokeColor3}`
+                    }}
+                >
+                    {pokeName}
+                </label>
+                <img className='pokeImage' alt={pokeName} src={pokeImage} />
+                <p className='stats'
+                    style={{
+                        backgroundColor: `${pokeColor2}`
+                    }}
+                >
+                    Type: {pokeType}{<br></br>}
+                    Att: {pokeAtt} |
+                    Def: {pokeDef}{<br></br>}
+                    HP: {pokeHp}
                 </p>
-            </li >
+            </div>
         )
     }
 }

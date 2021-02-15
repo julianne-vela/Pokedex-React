@@ -1,0 +1,58 @@
+.sidebar { 
+    grid-area: sidebar; 
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    background-color: var(--color2);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.label {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Futura Condensed Med';
+    margin: 5px 0;
+    background-color: var(--color4);
+    color: var(--color3);
+    border: 2px solid var(--color3);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.sortBtn {
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Futura Condensed Med';
+    margin: 5px 0;
+    background-color: var(--color3);
+    color: var(--color4);
+    border: 2px solid var(--color4);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.dropDown {
+    background-color: var(--color4);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Futura Condensed Med';
+}
+
+.radioInput {
+    display: none;
+}
+
+.radio {
+    font-size: 1rem;
+    font-family: 'Futura Condensed Med';
+    
+}
+
+.searchName {
+    background-color: var(--color4);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Futura Condensed Med';
+    text-align: center;
+}

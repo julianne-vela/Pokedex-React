@@ -1,0 +1,68 @@
+@font-face{
+    font-family: 'Early Gameboy';
+    src: url('../../Assets/Fonts/early-gameboy.ttf') format('TrueType');
+    font-family: 'Gill Sans EB';
+    src: url('../../Assets/Fonts/Gill_Sans_EB.ttf') format('TrueType');
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        'home title search';
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    width: 100%;
+    border-bottom: 3px solid var(--color2);
+}
+
+.title {
+    display: grid;
+    grid-area: title;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Early Gameboy';
+    font-size: 2rem;
+    color: var(--color4);
+    text-shadow: 4px 4px 7px var(--color3);
+}
+
+.home {
+    display: grid;
+    grid-area: home;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.home > p {
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Gill Sans EB';
+    color: var(--color3);
+    background-color: var(--color4);
+    border: 2px solid var(--color3);
+    border-radius: 10px;
+}
+
+.search {
+    display: grid;
+    grid-area: search;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search > p {
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Gill Sans EB';
+    color: var(--color3);
+    background-color: var(--color4);
+    border: 2px solid var(--color3);
+    border-radius: 10px;
+}
