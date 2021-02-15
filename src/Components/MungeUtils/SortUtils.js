@@ -1,9 +1,8 @@
 import pokeData from '../../data.js';
-import { capFirstLetter } from './GeneralUtils.js';
 
 export const uniqueTypes = Array.from(new Set(pokeData.map(pokemon => {
     Object.keys(pokemon)
-    return capFirstLetter(pokemon.type_1);
+    return pokemon.type_1;
 })))
 
 // sort in Ascending Order //

@@ -53,12 +53,12 @@ export default class SearchPage extends Component {
     //     })
     // }
 
-    // handleRadioChange = (e) => {
-    //     e.preventDefault()
-    //     this.setState({
-    //         tFilterSelected: e.target.value
-    //     })
-    // }
+    handleRadioChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            tFilterSelected: e.target.value
+        })
+    }
 
     // sort = () => {
     //     if (this.state.sortSelected === "attack" || this.state.sortSelected === "defense" || this.state.sortSelected === "hp") {
