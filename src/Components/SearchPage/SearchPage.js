@@ -107,6 +107,7 @@ export default class SearchPage extends Component {
                 {/* PokeList Module */}
                 < PokemonList className='pokemon-list float'
                     filteredPokemon={filteredList}
+                    pokeData={pokeData}
                 />
             </main >
         )

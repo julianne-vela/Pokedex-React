@@ -9,3 +9,7 @@ export function capFirstLetter(strInput) {
 export function findById(images, id) {
     return images.find(item => item.id === id);
 }
+
+export function findByType(pokeData, type) {
+    return pokeData.find(item => item.type_1 === type);
+}
