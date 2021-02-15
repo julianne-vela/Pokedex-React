@@ -13,8 +13,6 @@ export default class SideBar extends Component {
             handleSortSelected,
             sortAsc,
             sortDesc,
-            // handleSortOrder,
-            // sortAndUpdate,
             radioFilterSelected,
             handleRadioChange,
         } = this.props
@@ -36,8 +34,6 @@ export default class SideBar extends Component {
                     handleSortSelected={handleSortSelected}
                     sortAsc={sortAsc}
                     sortDesc={sortDesc}
-                // handleSortOrder={handleSortOrder}
-                // sortAndUpdate={sortAndUpdate}
                 />
 
                 {/* Radio Filters */}

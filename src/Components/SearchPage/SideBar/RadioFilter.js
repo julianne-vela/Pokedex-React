@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { uniqueTypes } from '../../MungeUtils/SortUtils.js';
-import { capFirstLetter } from '../../MungeUtils/GeneralUtils.js';
+import RadioOption from './RadioOption.js';
 
 export default class RadioFilter extends Component {
     render() {
@@ -9,18 +9,29 @@ export default class RadioFilter extends Component {
             handleRadioChange,
         } = this.props
 
+
+        // <>
+        //     <input type='radio'
+        //         name={option}
+        //         value={option}
+        //         key={option}
+        //         onChange={handleRadioChange} />
+        //     <label key={Math.random}>
+        //         <img alt={`${option} type pokemon symbol`} key={Math.random()} src={findById(images, 'grass').src} />
+        //     </label>
+        // </>)
+
         return (
             <>
                 {uniqueTypes.map(option =>
-                    <label key={option.value}>
-                        <input type='radio'
-                            name={option}
-                            value={option.value}
-                            key={option.value}
-                            onChange={handleRadioChange} />
-                    </label>
+                    <RadioOption
+                        name={option}
+                        value={option}
+                        key={option}
+                        onChange={handleRadioChange} />
                 )}
             </>
         )
     }
 }
+

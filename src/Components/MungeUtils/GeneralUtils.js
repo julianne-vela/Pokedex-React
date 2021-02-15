@@ -6,3 +6,6 @@ export function capFirstLetter(strInput) {
     return separatedWords.join(' ');
 }
 
+export function findById(images, id) {
+    return images.find(item => item.id === id);
+}

@@ -11,29 +11,43 @@ export default class SearchPage extends Component {
     state = {
         pokeData: pokeData,
         searchQuery: '',
-        // sortOrder: 'ascending',
         sortBy: ['pokemon', 'type_1', 'attack', 'defense', 'hp'],
         sortSelected: 'pokemon',
         tFilterSelected: 'all',
     }
-
     sortAsc = () => {
-        this.setState(prevState => {
-            this.state.pokeData.sort((a, b) => (a[this.state.sortSelected] - b[this.state.sortSelected]))
-        })
-    }
+        const { pokeData, sortSelected } = this.state;
+        this.setState({
+            pokeData: [...pokeData].sort((a, b) => {
+                if (a[sortSelected] > b[sortSelected]) {
+                    return 1;
+                }
+
+                if (a[sortSelected] < b[sortSelected]) {
+                    return -1;
+                }
+
+                return 0;
+            })
+        });
+    };
 
     sortDesc = () => {
-        this.setState(prevState => {
-            this.state.pokeData.sort((a, b) => (b[this.state.sortSelected] - a[this.state.sortSelected]))
-        })
-    }
+        const { pokeData, sortSelected } = this.state;
+        this.setState({
+            pokeData: [...pokeData].sort((a, b) => {
+                if (a[sortSelected] > b[sortSelected]) {
+                    return -1;
+                }
 
-    // sortAndUpdate = (callback) => {
-    //     const sortedPokemon = callback()
+                if (a[sortSelected] < b[sortSelected]) {
+                    return 1;
+                }
 
-    //     this.setState({ pokeData: sortedPokemon })
-    // }
+                return 0;
+            })
+        });
+    };
 
     handleQueryChange = (e) => {
         this.setState({
@@ -47,12 +61,6 @@ export default class SearchPage extends Component {
         })
     }
 
-    // handleSortOrder = (e) => {
-    //     this.setState({
-    //         sortOrder: e.target.value
-    //     })
-    // }
-
     handleRadioChange = (e) => {
         e.preventDefault()
         this.setState({
@@ -60,46 +68,18 @@ export default class SearchPage extends Component {
         })
     }
 
-    // sort = () => {
-    //     if (this.state.sortSelected === "attack" || this.state.sortSelected === "defense" || this.state.sortSelected === "hp") {
-    //         if (this.state.sortOrder === 'ascending') {
-    //             pokeData.sort((a, b) => a[this.state.sortSelected] - b[this.state.sortSelected])
-    //         } else {
-    //             pokeData.sort((a, b) => b[this.state.sortSelected] - a[this.state.sortSelected])
-    //         }
-    //     } else {
-    //         if (this.state.sortOrder === 'ascending') {
-    //             pokeData.sort((a, b) => a[this.state.sortSelected].localeCompare(b[this.state.sortSelected]))
-    //         } else {
-    //             pokeData.sort((a, b) => b[this.state.sortSelected].localeCompare(a[this.state.sortSelected]))
-    //         }
-    //     }
-    // }
-
     render() {
         const {
             pokeData,
             sortBy,
             sortSelected,
-            // sortOrder,
             searchQuery,
             tFilterSelected,
         } = this.state
 
-        // const filteredPokemon = pokeData.filter(pokeObject => {
-        //     if (searchQuery === '') return pokeData;
-        //     if (pokeObject.pokemon.includes(searchQuery)) return true;
-        //     return filteredPokemon;
-        // });
-
         const filteredList = pokeData.filter(pokeObject => {
             return pokeObject['pokemon'].includes(this.state.searchQuery) || pokeObject['type_1'].includes(tFilterSelected);
         });
-
-        // if (sortOrder === 'ascending') {
-        //     pokeData.sort((a, b) => a[sortBy] - (b[sortBy]))
-        // }
-        // else pokeData.sort((a, b) => b[sortBy] - (a[sortBy]))
 
         return (
             <main className='grid-container' >
@@ -111,14 +91,10 @@ export default class SearchPage extends Component {
 
                     // Sort Asc/Desc //
                     sortByValues={sortBy}
-                    // sortOrderValue={sortOrder}
                     sortSelected={sortSelected}
                     handleSortSelected={this.handleSortSelected}
                     sortAsc={this.sortAsc}
                     sortDesc={this.sortDesc}
-
-                    // handleSortOrder={this.handleSortOrder}
-                    // sortAndUpdate={(e) => { this.sort() }}
 
                     // Radio Filters //
                     radioSelectedValue={tFilterSelected}

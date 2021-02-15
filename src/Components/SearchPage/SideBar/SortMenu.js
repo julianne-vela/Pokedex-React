@@ -7,12 +7,7 @@ export default class SortMenu extends Component {
             handleSortSelected,
             sortAsc,
             sortDesc,
-            // handleSortOrder,
-            // sortAndUpdate,
         } = this.props
-
-        // console.log(handleSortSelected);
-        // console.log(sortByValues);
 
         const options = sortByValues.map(option => <option value={option} key={option}>{option}</option>)
 
