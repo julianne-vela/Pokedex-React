@@ -4,7 +4,7 @@
     grid-template-rows: 0.25fr 1fr 1fr 1fr 1fr;
     gap: 5px 5px;
     grid-template-areas:
-      ". applied-filters"
+      "applied-filters applied-filters"
       "sidebar pokemon-list"
       "sidebar pokemon-list"
       "sidebar pokemon-list"
@@ -12,14 +12,29 @@
       width: auto;
       content: '';
       clear: both;
+    background-color: var(--color4);
 }
 
 .float {
     float: left;
 }
 
-.applied-filters { 
+.marquee { 
+    display: grid;
+    align-content: center;
     grid-area: applied-filters; 
-    border: 8px solid gold;
+    background-color: var(--color4);
+    font-size: 1.3rem;
+    font-family: 'Early Gameboy';
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 100%;
+    animation: marquee 150s linear infinite;
+}
+
+@keyframes marquee {
+    0%   { transform: translate(0); }
+    100% { transform: translate(-100%); }
 }
   

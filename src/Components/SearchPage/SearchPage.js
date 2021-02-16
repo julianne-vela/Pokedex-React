@@ -2,19 +2,29 @@ import React, { Component } from 'react';
 import './SearchPage.css';
 import './SideBar/SideBar.css';
 import './Pokemon/PokemonList.css';
-import pokeData from '../../data.js';
+import request from 'superagent';
+// import pokeData from '../../data.js';
 import AppliedFilters from './AppliedFilters.js';
 import PokemonList from './Pokemon/PokemonList';
 import SideBar from './SideBar/SideBar.js';
 
 export default class SearchPage extends Component {
     state = {
-        pokeData: pokeData,
+        pokeData: [],
         searchQuery: '',
         sortBy: ['pokemon', 'type_1', 'attack', 'defense', 'hp'],
         sortSelected: 'pokemon',
         tFilterSelected: 'all',
     }
+
+    componentDidMount = async () => {
+        const pokeData = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex')
+
+        this.setState({
+            pokeData: pokeData.body.results
+        })
+    }
+
     sortAsc = () => {
         const { pokeData, sortSelected } = this.state;
         this.setState({
@@ -107,6 +117,7 @@ export default class SearchPage extends Component {
                 {/* PokeList Module */}
                 < PokemonList className='pokemon-list float'
                     filteredPokemon={filteredList}
+                    pokeData={pokeData}
                 />
             </main >
         )

@@ -24,7 +24,7 @@ export default class RadioFilter extends Component {
         return (
             <>
                 {uniqueTypes.map(option =>
-                    <RadioOption
+                    <RadioOption className='radio'
                         name={option}
                         value={option}
                         key={option}

@@ -6,12 +6,13 @@ export default class PokemonList extends Component {
 
 
     render() {
-        const { filteredPokemon } = this.props
+        const { filteredPokemon, pokeData } = this.props
 
         return (
             <content className='pokemon-list float'>
                 {filteredPokemon.map(pokeObject =>
                     <PokeItem
+                        pokeData={pokeData}
                         key={pokeObject._id}
                         pokeImage={pokeObject.url_image}
                         pokeName={capFirstLetter(pokeObject.pokemon)}
@@ -19,6 +20,9 @@ export default class PokemonList extends Component {
                         pokeHp={pokeObject.hp}
                         pokeAtt={pokeObject.attack}
                         pokeDef={pokeObject.defense}
+                        pokeColor1={pokeObject.color_1}
+                        pokeColor2={pokeObject.color_2}
+                        pokeColor3={pokeObject.color_f}
                     />)}
             </content>
         );

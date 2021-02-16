@@ -8,7 +8,8 @@ export default class SearchBar extends Component {
         } = this.props
 
         return (
-            <input placeholder='Search by Name'
+            <input className='searchName'
+                placeholder='Char...'
                 value={searchValue}
                 onChange={handleChange}
             />

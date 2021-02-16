@@ -15,7 +15,7 @@ export default class SortMenu extends Component {
         return (
             <>
                 {/* DropDown Sort By */}
-                <select className='dropdown'
+                <select className='dropDown'
                     onChange={handleSortSelected}>
                     {options}
                 </select>
