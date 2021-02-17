@@ -1,0 +1,57 @@
+/* RadioFilter Global style */
+.radioWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px 5px;
+}
+
+/* Input Field Styles */
+.radioInput {
+    display: none;
+}
+
+/* Label Styles */
+.radioLabel>img {
+    width: 50px;
+    height: 50px;
+}
+
+.radioLabel {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+/* Animation/Hover Styles */
+.radioLabel:active {
+    opacity: .5;
+}
+
+.radioLabel:hover {
+    opacity: .5;
+}
+
+.radioLabel:hover figcaption {
+    visibility: visible;
+    opacity: 1;
+}
+
+.radioInput:checked+.radioLabel {
+    opacity: .5;
+}
+
+.caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--color4);
+    font-size: 1.2rem;
+    font-family: 'Pokemon_Solid';
+    text-align: center;
+    text-shadow: 2px 2px var(--color3);
+    visibility: hidden;
+    opacity: 0;
+
+    transition: opacity .2s, visibility .2s;
+}

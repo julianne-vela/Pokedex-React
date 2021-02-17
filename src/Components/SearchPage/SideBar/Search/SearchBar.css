@@ -1,0 +1,7 @@
+.searchName {
+    background-color: var(--color4);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Futura Condensed Med';
+    text-align: center;
+}

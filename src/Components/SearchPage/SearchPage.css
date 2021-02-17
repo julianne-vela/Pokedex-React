@@ -1,17 +1,16 @@
 .grid-container {
     display: grid;
     grid-template-columns: .75fr 3fr;
-    grid-template-rows: 0.25fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 5px 5px;
     grid-template-areas:
-      "applied-filters applied-filters"
-      "sidebar pokemon-list"
-      "sidebar pokemon-list"
-      "sidebar pokemon-list"
-      "sidebar pokemon-list";
-      width: auto;
-      content: '';
-      clear: both;
+        "sidebar pokemon-list"
+        "sidebar pokemon-list"
+        "sidebar pokemon-list"
+        "sidebar pokemon-list";
+    width: auto;
+    content: '';
+    clear: both;
     background-color: var(--color4);
 }
 
@@ -19,22 +18,51 @@
     float: left;
 }
 
-.marquee { 
-    display: grid;
+.marquee {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--color4);
+}
+
+.marquee p {
+    font-size: 1.3rem;
+    font-family: 'Early Gameboy';
+    color: var(--color2);
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    margin: 0;
+    white-space: nowrap;
+    text-align: center;
+
+    /* Starting position */
+    transform: translateX(100%);
+
+    /* Apply animation to this element */
+    animation: marquee 15s linear infinite;
+}
+
+/* Animation movements */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* display: grid;
     align-content: center;
-    grid-area: applied-filters; 
+    grid-area: applied-filters;
     background-color: var(--color4);
     font-size: 1.3rem;
     font-family: 'Early Gameboy';
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
-    padding-left: 100%;
-    animation: marquee 150s linear infinite;
-}
-
-@keyframes marquee {
-    0%   { transform: translate(0); }
-    100% { transform: translate(-100%); }
-}
-  
+    animation: marquee 150s linear infinite; */

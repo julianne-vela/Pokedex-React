@@ -2,86 +2,81 @@ import React, { Component } from 'react';
 import './SearchPage.css';
 import './SideBar/SideBar.css';
 import './Pokemon/PokemonList.css';
-import pokeData from '../../data.js';
-import AppliedFilters from './AppliedFilters.js';
+import './Loading.css';
+import request from 'superagent';
+import MarqueeScroll from './MarqueeScroll.js';
 import PokemonList from './Pokemon/PokemonList';
 import SideBar from './SideBar/SideBar.js';
-
 export default class SearchPage extends Component {
     state = {
-        pokeData: pokeData,
+        // Global //
+        pokeData: [],
+        loading: false,
+        // Search //
         searchQuery: '',
+        // Sort //
         sortBy: ['pokemon', 'type_1', 'attack', 'defense', 'hp'],
         sortSelected: 'pokemon',
-        tFilterSelected: 'all',
+        sortOrder: '',
+        // Filter (radio) //
+        pokeTypes: [],
+        radioSelected: '',
     }
-    sortAsc = () => {
-        const { pokeData, sortSelected } = this.state;
+    componentDidMount = async () => {
+        await this.fetchPokemonAndTypes()
+        // await this.fetchTypes()
+    }
+    fetchPokemonAndTypes = async () => {
         this.setState({
-            pokeData: [...pokeData].sort((a, b) => {
-                if (a[sortSelected] > b[sortSelected]) {
-                    return 1;
-                }
+            loading: true,
+            pokeData: [],
+            pokeTypes: [],
+        })
 
-                if (a[sortSelected] < b[sortSelected]) {
-                    return -1;
-                }
+        const pokeData = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?perPage=50')
+        const data = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex/types')
 
-                return 0;
-            })
-        });
-    };
+        let pokeTypes = data.body.map(type => type.type);
 
-    sortDesc = () => {
-        const { pokeData, sortSelected } = this.state;
         this.setState({
-            pokeData: [...pokeData].sort((a, b) => {
-                if (a[sortSelected] > b[sortSelected]) {
-                    return -1;
-                }
+            loading: false,
+            pokeData: pokeData.body.results,
+            pokeTypes: pokeTypes,
+        })
 
-                if (a[sortSelected] < b[sortSelected]) {
-                    return 1;
-                }
 
-                return 0;
-            })
-        });
-    };
+    }
+    handleQueryChange = async e => this.setState({searchQuery: e.target.value})
+    handleSortSelected = async e => this.setState({sortSelected: e.target.value})
+    handleRadioSelected = async e => this.setState({radioSelected: e.target.value})
 
-    handleQueryChange = (e) => {
+    sortAndUpdate = async e => {
         this.setState({
-            searchQuery: e.target.value
+            sortOrder: e.target.value
+        })
+
+        const pokeData = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?sort={this.state.sortSelected}&direction={this.state.sortOrder}')
+
+        this.setState({
+            pokeData: pokeData.body.results
         })
     }
-
-    handleSortSelected = (e) => {
-        this.setState({
-            sortSelected: e.target.value
-        })
-    }
-
-    handleRadioChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            tFilterSelected: e.target.value
-        })
-    }
-
     render() {
         const {
             pokeData,
+            pokeTypes,
+            loading,
             sortBy,
             sortSelected,
+            sortOrder,
             searchQuery,
-            tFilterSelected,
+            radioSelected,
         } = this.state
 
-        const filteredList = pokeData.filter(pokeObject => {
-            return pokeObject['pokemon'].includes(this.state.searchQuery) || pokeObject['type_1'].includes(tFilterSelected);
-        });
-
         return (
+            <>
+            {/* Marquee Scroll */}
+            < MarqueeScroll className='marquee-scroll' />
             <main className='grid-container' >
                 {/* SideBar Module */}
                 < SideBar className='sidebar float'
@@ -93,23 +88,22 @@ export default class SearchPage extends Component {
                     sortByValues={sortBy}
                     sortSelected={sortSelected}
                     handleSortSelected={this.handleSortSelected}
-                    sortAsc={this.sortAsc}
-                    sortDesc={this.sortDesc}
+                    sortOrder={sortOrder}
+                    sortAndUpdate={this.sortAndUpdate}
 
                     // Radio Filters //
-                    radioSelectedValue={tFilterSelected}
-                    handleRadioChange={this.handleRadioChange}
+                    pokeTypes={pokeTypes}
+                    radioSelected={radioSelected}
+                    handleRadioSelected={this.handleRadioSelected}
                 />
-
-                {/* Applied Filters - options stretch */}
-                < AppliedFilters className='applied-filters' />
 
                 {/* PokeList Module */}
                 < PokemonList className='pokemon-list float'
-                    filteredPokemon={filteredList}
+                    loading={loading}
                     pokeData={pokeData}
                 />
             </main >
+            </>
         )
     }
 }

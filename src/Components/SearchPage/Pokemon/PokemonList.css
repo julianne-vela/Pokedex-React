@@ -1,4 +1,4 @@
-.pokemon-list { 
+.pokemon-list {
     grid-area: pokemon-list;
     display: flex;
     flex-wrap: wrap;
