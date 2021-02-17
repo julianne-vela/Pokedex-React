@@ -55,14 +55,3 @@
         transform: translateX(-100%);
     }
 }
-
-/* display: grid;
-    align-content: center;
-    grid-area: applied-filters;
-    background-color: var(--color4);
-    font-size: 1.3rem;
-    font-family: 'Early Gameboy';
-    margin: 0 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: marquee 150s linear infinite; */
