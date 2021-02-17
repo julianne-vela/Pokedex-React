@@ -10,17 +10,16 @@ export default class RadioOption extends Component {
         const {
             value,
             onChange,
-            // radioSelected,
-            checked,
+            radioSelected,
         } = this.props;
 
         const typeImg = findById(images, value)
 
         return(
             <>
-                <label className='radioLabel' name={value}>
-                <input className='radioInput' type='radio' value={value} onChange={onChange} checked={checked} />
-                    <img alt={typeImg.description} src={process.env.PUBLIC_URL + `./Assets/${value}.png`} />
+                <input className='radioInput' type='radio' value={value} onChange={onChange} checked={radioSelected === value} />
+                <label className='label' name={value}>
+                    <img className='radioImg' alt={typeImg.description} src={process.env.PUBLIC_URL + `./Assets/${value}.png`} />
                     <figcaption className='caption'>{capFirstLetter(value)}</figcaption>
                 </label>
             </>
