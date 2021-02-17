@@ -17,7 +17,7 @@ export default class RadioFilter extends Component {
                         value={type}
                         key={type}
                         onChange={handleRadioSelected} 
-                        checked={radioSelected === type} />
+                        radioSelected={radioSelected} />
                 )}
             </div>
         )

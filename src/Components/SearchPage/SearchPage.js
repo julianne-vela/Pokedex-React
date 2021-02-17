@@ -48,8 +48,12 @@ export default class SearchPage extends Component {
     }
     handleQueryChange = async e => this.setState({searchQuery: e.target.value})
     handleSortSelected = async e => this.setState({sortSelected: e.target.value})
-    handleRadioSelected = async e => this.setState({radioSelected: e.target.value})
-
+    handleRadioSelected = async (e) => {
+        e.preventDefault()
+        this.setState({
+            radioSelected: e.target.value
+        })
+    }
     sortAndUpdate = async e => {
         this.setState({
             sortOrder: e.target.value

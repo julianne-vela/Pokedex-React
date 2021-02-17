@@ -12,33 +12,33 @@
 }
 
 /* Label Styles */
-.radioLabel>img {
+.label>img {
     width: 50px;
     height: 50px;
 }
 
-.radioLabel {
+.label {
     position: relative;
     width: 50px;
     height: 50px;
 }
 
 /* Animation/Hover Styles */
-.radioLabel:active {
+/* .label:active {
+    opacity: .5;
+} */
+
+.label:hover:active .radioImg {
     opacity: .5;
 }
 
-.radioLabel:hover {
+input[type='radio']:checked+label {
     opacity: .5;
 }
 
-.radioLabel:hover figcaption {
+.label:hover .caption {
     visibility: visible;
     opacity: 1;
-}
-
-.radioInput:checked+.radioLabel {
-    opacity: .5;
 }
 
 .caption {
