@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../SideBar.css';
 
 export default class SearchBar extends Component {
     render() {
@@ -8,11 +9,13 @@ export default class SearchBar extends Component {
         } = this.props
 
         return (
-            <input className='searchName'
-                placeholder='Char...'
-                value={searchValue}
-                onChange={handleChange}
-            />
+            <div className='SearchBar'>
+                <input className='searchInput'
+                    placeholder='Char...'
+                    value={searchValue}
+                    onChange={handleChange}
+                />
+            </div>
         )
     }
 }

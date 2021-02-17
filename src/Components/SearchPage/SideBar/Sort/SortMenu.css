@@ -1,3 +1,9 @@
+.sortMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .dropDown {
     background-color: var(--color4);
     border-radius: 10px;
