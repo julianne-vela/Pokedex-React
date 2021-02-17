@@ -1,8 +1,13 @@
+body {
+    background-color: var(--color6);
+}
+
 .welcome {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
+    height: 100%;
     text-align: center;
 }

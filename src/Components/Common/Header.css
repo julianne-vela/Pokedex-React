@@ -1,4 +1,4 @@
-@font-face{
+@font-face {
     font-family: 'Early Gameboy';
     src: url('../../Assets/Fonts/early-gameboy.ttf') format('TrueType');
     font-family: 'Gill Sans EB';
@@ -9,13 +9,14 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         'home title search';
     margin: 0;
     padding: 0;
     height: 80px;
     width: 100%;
     border-bottom: 3px solid var(--color2);
+    background-color: var(--color6);
 }
 
 .title {
@@ -36,7 +37,7 @@
     align-items: center;
 }
 
-.home > p {
+.home>p {
     padding: 5px;
     text-align: center;
     text-decoration: none;
@@ -55,7 +56,7 @@
     align-items: center;
 }
 
-.search > p {
+.search>p {
     padding: 5px;
     text-align: center;
     text-decoration: none;

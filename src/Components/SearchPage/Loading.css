@@ -1,0 +1,25 @@
+.pokeLoading {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    animation: spin 2s linear infinite;
+}
+
+
+@media (prefers-reduced-motion: true) {
+    .pokeLoading {
+        animation: spin infinite 20s linear;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

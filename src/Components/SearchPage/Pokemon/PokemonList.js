@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { capFirstLetter } from '../../MungeUtils/GeneralUtils.js';
 import PokeItem from './PokemonItem.js';
+import Loading from '../Loading.js';
 
 export default class PokemonList extends Component {
 
 
     render() {
-        const { filteredPokemon, pokeData } = this.props
+        const { pokeData, loading } = this.props
 
         return (
             <content className='pokemon-list float'>
-                {filteredPokemon.map(pokeObject =>
+                {loading ? <Loading /> : pokeData.map(pokeObject =>
                     <PokeItem
                         pokeData={pokeData}
                         key={pokeObject._id}

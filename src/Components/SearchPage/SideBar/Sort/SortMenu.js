@@ -5,8 +5,7 @@ export default class SortMenu extends Component {
         const {
             sortByValues,
             handleSortSelected,
-            sortAsc,
-            sortDesc,
+            sortAndUpdate,
         } = this.props
 
         const options = sortByValues.map(option => <option value={option} key={option}>{option}</option>)
@@ -21,8 +20,8 @@ export default class SortMenu extends Component {
                 </select>
 
                 {/* Sort Ascending/Descending Buttons */}
-                <button className='sortBtn' value='ascending' onClick={sortAsc}>Ascending</button>
-                <button className='sortBtn' value='descending' onClick={sortDesc}>Descending</button>
+                <button className='sortBtn' value='ascending' onClick={sortAndUpdate}>Ascending</button>
+                <button className='sortBtn' value='descending' onClick={sortAndUpdate}>Descending</button>
 
             </ >
         )
