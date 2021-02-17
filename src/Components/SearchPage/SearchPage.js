@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './SearchPage.css';
+import './Marquee/Marquee.css';
 import './SideBar/SideBar.css';
 import './Pokemon/PokemonList.css';
 import './Loading.css';
 import request from 'superagent';
-import MarqueeScroll from './MarqueeScroll.js';
+import MarqueeScroll from './Marquee/MarqueeScroll.js';
 import PokemonList from './Pokemon/PokemonList';
 import SideBar from './SideBar/SideBar.js';
 export default class SearchPage extends Component {
@@ -12,36 +13,48 @@ export default class SearchPage extends Component {
         // Global //
         pokeData: [],
         loading: false,
-        // Search //
+        totalPokemon: 0,
+        currentPage: 1,
+        // Search/Sort/Filter //
         searchQuery: '',
-        // Sort //
+        perPage: 25,
         sortBy: ['pokemon', 'type_1', 'attack', 'defense', 'hp'],
         sortSelected: 'pokemon',
         sortOrder: '',
-        // Filter (radio) //
         pokeTypes: [],
         radioSelected: '',
     }
     componentDidMount = async () => {
         await this.fetchPokemonAndTypes()
-        // await this.fetchTypes()
     }
+    // componentDidUpdate = async (prevState) => {
+    //     const oldPageNumber = prevState.currentPage;
+    //     const newPageNumber = this.state.currentPage;
+
+    //     if (oldPageNumber !== newPageNumber) {
+    //         await this.fetchPokemonAndTypes();
+    //     }
+    // }
+
     fetchPokemonAndTypes = async () => {
-        this.setState({
+        await this.setState({
             loading: true,
             pokeData: [],
+            perPage: 25,
             pokeTypes: [],
         })
 
-        const pokeData = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?perPage=50')
+        const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&page=${this.state.currentPage}&perPage=${this.state.perPage}`)
         const data = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex/types')
 
         let pokeTypes = data.body.map(type => type.type);
 
-        this.setState({
+        await this.setState({
             loading: false,
             pokeData: pokeData.body.results,
             pokeTypes: pokeTypes,
+            perPage: pokeData.body.perPage,
+            totalPokemon: pokeData.body.count,
         })
 
 
@@ -54,12 +67,39 @@ export default class SearchPage extends Component {
             radioSelected: e.target.value
         })
     }
+    handlePerPage = async (e) => this.setState({perPage: e.target.value})
+    
+    handlePageNav = async (e) => {
+        if (e.target.value === 'next') {
+            await this.setState({
+                currentPage: this.state.currentPage + 1
+            })
+        }
+        else await this.setState({
+            currentPage: this.state.currentPage - 1
+        })
+        await this.fetchPokemonAndTypes();
+    }
+    
+    // handleNextClick = async (e) => {
+    //     await this.setState({
+    //         currentPage: this.state.currentPage + 1
+    //     })
+    //     await this.fetchPokemonAndTypes();
+    // }
+    // handlePrevClick = async (e) => {
+    //     await this.setState({
+    //         currentPage: this.state.currentPage - 1
+    //     })
+    //     await this.fetchPokemonAndTypes();
+    // }
+
     sortAndUpdate = async e => {
         this.setState({
             sortOrder: e.target.value
         })
 
-        const pokeData = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?sort={this.state.sortSelected}&direction={this.state.sortOrder}')
+        const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${this.state.sortSelected}&direction=${this.state.sortOrder}`)
 
         this.setState({
             pokeData: pokeData.body.results
@@ -77,16 +117,21 @@ export default class SearchPage extends Component {
             radioSelected,
         } = this.state
 
+        const lastPage = Math.ceil(this.state.totalPokemon / this.state.perPage);
+
         return (
             <>
             {/* Marquee Scroll */}
             < MarqueeScroll className='marquee-scroll' />
-            <main className='grid-container' >
+            <main className='grid-container' >                
                 {/* SideBar Module */}
                 < SideBar className='sidebar float'
                     // Search Bar //
                     searchValue={searchQuery}
                     handleQueryChange={this.handleQueryChange}
+
+                    // Page Nav //
+                    
 
                     // Sort Asc/Desc //
                     sortByValues={sortBy}
