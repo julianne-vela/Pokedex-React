@@ -10,7 +10,7 @@ export default withRouter(class Header extends Component {
                     <p>Home</p>
                 </NavLink>
                 <h1 className='title'>Nessi's Pokedex</h1>
-                <NavLink className='search' exact activeClassName='selected' to='/search'>
+                <NavLink className='search' exact activeClassName='selected' to='/pokemon'>
                     <p>Search</p>
                 </NavLink>
             </header>

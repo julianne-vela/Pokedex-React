@@ -12,7 +12,8 @@ export default class SortMenu extends Component {
 
 
         return (
-            <>
+            <aside className='sortMenu'>
+                <label className='sortLabel'>Sort By: </label>
                 {/* DropDown Sort By */}
                 <select className='dropDown'
                     onChange={handleSortSelected}>
@@ -20,10 +21,11 @@ export default class SortMenu extends Component {
                 </select>
 
                 {/* Sort Ascending/Descending Buttons */}
+                <div className='sortControls'>
                 <button className='sortBtn' value='ascending' onClick={sortAndUpdate}>Ascending</button>
                 <button className='sortBtn' value='descending' onClick={sortAndUpdate}>Descending</button>
-
-            </ >
+                </div>
+            </ aside>
         )
     }
 }

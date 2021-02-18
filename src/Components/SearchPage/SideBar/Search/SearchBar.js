@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './SearchBar.css';
 
 export default class SearchBar extends Component {
     render() {
@@ -8,11 +9,14 @@ export default class SearchBar extends Component {
         } = this.props
 
         return (
-            <input className='searchName'
-                placeholder='Char...'
-                value={searchValue}
-                onChange={handleChange}
-            />
+            <aside className='searchBar'>
+                <label className='searchLabel'>Search Pokedex</label>
+                <input className='searchInput'
+                    placeholder='Char...'
+                    value={searchValue}
+                    onChange={handleChange}
+                />
+            </aside>
         )
     }
 }

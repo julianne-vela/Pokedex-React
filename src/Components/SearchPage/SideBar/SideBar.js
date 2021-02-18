@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import './Filter/RadioFilter.css';
 import './Search/SearchBar.css';
 import './Sort/SortMenu.css';
+import './PageNav/PageNav.css';
 import RadioFilter from './Filter/RadioFilter.js';
 import SearchBar from './Search/SearchBar.js';
 import SortMenu from './Sort/SortMenu.js';
+import PageNav from './PageNav/PageNav';
 
 export default class SideBar extends Component {
     render() {
         const {
             searchValue,
             handleQueryChange,
+            handlePerPage,
+            handlePageNav,
             sortByValues,
             sortSelected,
             handleSortSelected,
@@ -23,15 +27,19 @@ export default class SideBar extends Component {
 
         return (
             <aside className='sidebar float'>
-                {/* search bar */}
-                <p className='menuLabel'>Search by Pokemon</p>
+                {/* Page Nav */}
+                <PageNav className='pageNav'
+                handlePerPage={handlePerPage}
+                handlePageNav={handlePageNav}
+                />
+
+                {/* Search Bar */}
                 <SearchBar className='searchBar'
                     searchValue={searchValue}
                     handleChange={handleQueryChange}
                 />
 
-                {/* Sort menu */}
-                <p className='menuLabel'>Sort</p>
+                {/* Sort Menu */}
                 <SortMenu className='sortMenu'
                     sortByValues={sortByValues}
                     sortSelected={sortSelected}
@@ -41,7 +49,6 @@ export default class SideBar extends Component {
                 />
 
                 {/* Radio Filters */}
-                <p className='menuLabel'>Filter By</p>
                 <RadioFilter className='radioFilter'
                     pokeTypes={pokeTypes}
                     radioSelected={radioSelected}

@@ -1,7 +1,6 @@
-.sortMenu {
+.pageNav {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .dropDown {
@@ -11,7 +10,7 @@
     font-family: 'Futura Condensed Med';
 }
 
-.sortBtn {
+.navBtn {
     text-align: center;
     font-size: 1rem;
     font-family: 'Futura Condensed Med';
