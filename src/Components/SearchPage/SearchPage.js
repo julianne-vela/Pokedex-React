@@ -56,8 +56,6 @@ export default class SearchPage extends Component {
             perPage: pokeData.body.perPage,
             totalPokemon: pokeData.body.count,
         })
-
-
     }
     handleQueryChange = async e => this.setState({searchQuery: e.target.value})
     handleSortSelected = async e => this.setState({sortSelected: e.target.value})
@@ -80,19 +78,6 @@ export default class SearchPage extends Component {
         })
         await this.fetchPokemonAndTypes();
     }
-    
-    // handleNextClick = async (e) => {
-    //     await this.setState({
-    //         currentPage: this.state.currentPage + 1
-    //     })
-    //     await this.fetchPokemonAndTypes();
-    // }
-    // handlePrevClick = async (e) => {
-    //     await this.setState({
-    //         currentPage: this.state.currentPage - 1
-    //     })
-    //     await this.fetchPokemonAndTypes();
-    // }
 
     sortAndUpdate = async e => {
         this.setState({
@@ -131,7 +116,8 @@ export default class SearchPage extends Component {
                     handleQueryChange={this.handleQueryChange}
 
                     // Page Nav //
-                    
+                    handlePerPage={this.handlePerPage}
+                    handlePageNav={this.handlePageNav}
 
                     // Sort Asc/Desc //
                     sortByValues={sortBy}

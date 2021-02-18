@@ -13,6 +13,7 @@ export default class SortMenu extends Component {
 
         return (
             <aside className='sortMenu'>
+                <label className='sortLabel'>Sort By: </label>
                 {/* DropDown Sort By */}
                 <select className='dropDown'
                     onChange={handleSortSelected}>

@@ -9,6 +9,7 @@ export default class PageNav extends Component {
 
         return (
             <nav className='pageNav'>
+                <label className='navLabel'>Results Per Page</label>
                 <div className='navControls'>
                     <button className='navBtn' value='previous' onChange={handlePageNav}>Previous</button>
                     <select className='dropDown' onChange={handlePerPage}>

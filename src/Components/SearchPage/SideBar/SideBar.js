@@ -13,6 +13,8 @@ export default class SideBar extends Component {
         const {
             searchValue,
             handleQueryChange,
+            handlePerPage,
+            handlePageNav,
             sortByValues,
             sortSelected,
             handleSortSelected,
@@ -25,19 +27,19 @@ export default class SideBar extends Component {
 
         return (
             <aside className='sidebar float'>
+                {/* Page Nav */}
+                <PageNav className='pageNav'
+                handlePerPage={handlePerPage}
+                handlePageNav={handlePageNav}
+                />
+
                 {/* Search Bar */}
-                <label className='menuLabel'>Search Pokedex</label>
                 <SearchBar className='searchBar'
                     searchValue={searchValue}
                     handleChange={handleQueryChange}
                 />
 
-                {/* Page Nav */}
-                <label className='menuLabel'>Results Per Page</label>
-                <PageNav />
-
                 {/* Sort Menu */}
-                <p className='menuLabel'>Sort By: </p>
                 <SortMenu className='sortMenu'
                     sortByValues={sortByValues}
                     sortSelected={sortSelected}
@@ -47,7 +49,6 @@ export default class SideBar extends Component {
                 />
 
                 {/* Radio Filters */}
-                <p className='menuLabel'>Filter By Type</p>
                 <RadioFilter className='radioFilter'
                     pokeTypes={pokeTypes}
                     radioSelected={radioSelected}

@@ -13,7 +13,7 @@ import '../../App.css';
 export default class Routes extends Component {
     render() {
         return (
-            <main className='site-grid-container'>
+            <main className='routes'>
                 <Router>
                     <Header />
                     <Switch>
