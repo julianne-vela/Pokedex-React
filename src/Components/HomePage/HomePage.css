@@ -1,13 +1,49 @@
 body {
-    background-color: var(--color6);
+  background-color: var(--color6);
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.homePage > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 2rem;
+  padding: 20px;
+  background-color: var(--color6);
+  border-radius: 10px;
 }
 
 .welcome {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-    text-align: center;
+  font-family: "Pokemon Hollow";
+  font-size: 3rem;
+  color: var(--color4);
+  text-shadow: 5px 5px 5px var(--color3);
+  margin: 5px;
+}
+
+.intro,
+.future {
+  font-family: "Futura Condensed Med";
+  font-size: 1.5rem;
+  margin: 5px;
+}
+
+.signOff {
+  font-family: "Pokemon Solid";
+  color: var(--color3);
+  text-shadow: 5px 5px 5px var(--color4);
+  font-size: 2rem;
+  margin: 5px;
 }
