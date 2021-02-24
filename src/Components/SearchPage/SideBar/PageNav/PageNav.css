@@ -3,13 +3,11 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "previous current next"
-    "perPage perPage perPage";
+    "perPage perPage perPage"
+    "previous current next";
   gap: 5px;
   width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  width: 100%; */
+  margin: 2.5px;
 }
 
 .dropDown {
@@ -27,7 +25,7 @@
   text-align: center;
   font-size: 1.3rem;
   font-family: "Futura Condensed Med";
-  margin: 5px 0;
+  margin: 2.5px 0;
   width: 100%;
   background-color: var(--color4);
   color: var(--color3);

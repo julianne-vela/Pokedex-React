@@ -1,23 +1,23 @@
 .sidebar {
-    grid-area: sidebar;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: auto;
-    background-color: var(--color2);
-    padding: 5px;
-    border-radius: 10px;
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  background-color: var(--color2);
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .menuLabel {
-    text-align: center;
-    font-size: 1.3rem;
-    font-family: 'Futura Condensed Med';
-    margin: 5px 0;
-    width: 100%;
-    background-color: var(--color4);
-    color: var(--color3);
-    border: 2px solid var(--color3);
-    border-radius: 10px;
-    padding: 3px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: "Futura Condensed Med";
+  margin: 5px 0;
+  width: 100%;
+  background-color: var(--color4);
+  color: var(--color3);
+  border: 2px solid var(--color3);
+  border-radius: 10px;
+  padding: 3px;
 }

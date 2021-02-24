@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {capFirstLetter} from '../../../MungeUtils/GeneralUtils.js';
 
 export default class SortMenu extends Component {
     render() {
@@ -8,23 +9,21 @@ export default class SortMenu extends Component {
             sortAndUpdate,
         } = this.props
 
-        const options = sortByValues.map(option => <option value={option} key={option}>{option}</option>)
+        const options = sortByValues.map(option => <option value={option} key={option}>{capFirstLetter(option)}</option>)
 
 
         return (
             <aside className='sortMenu'>
-                <label className='sortLabel'>Sort By: </label>
-                {/* DropDown Sort By */}
-                <select className='dropDown'
-                    onChange={handleSortSelected}>
-                    {options}
-                </select>
-
+                <label className='sortLabel'>Sort By: 
+                    {/* DropDown Sort By */}
+                    <select className='sortDropDown'
+                        onChange={handleSortSelected}>
+                        {options}
+                    </select>
+                </label>
                 {/* Sort Ascending/Descending Buttons */}
-                <div className='sortControls'>
-                <button className='sortBtn' value='ascending' onClick={sortAndUpdate}>Ascending</button>
-                <button className='sortBtn' value='descending' onClick={sortAndUpdate}>Descending</button>
-                </div>
+                <button className='sortBtn asc' value='ascending' onClick={sortAndUpdate}>Ascending</button>
+                <button className='sortBtn desc' value='descending' onClick={sortAndUpdate}>Descending</button>
             </ aside>
         )
     }

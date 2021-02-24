@@ -1,6 +1,7 @@
 .radioFilter {
   display: grid;
   width: 100%;
+  margin-top: 2.5px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 6fr;
   grid-template-areas:
