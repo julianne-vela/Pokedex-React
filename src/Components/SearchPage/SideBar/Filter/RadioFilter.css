@@ -1,26 +1,26 @@
 /* RadioFilter Global style */
 .radioWrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 5px 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px 5px;
 }
 
 /* Input Field Styles */
 .radioInput {
-    display: none;
+  display: none;
 }
 
 /* Label Styles */
-.label>img {
-    width: 50px;
-    height: 50px;
+.label > img {
+  width: 50px;
+  height: 50px;
 }
 
 .label {
-    position: relative;
-    width: 50px;
-    height: 50px;
+  position: relative;
+  width: 50px;
+  height: 50px;
 }
 
 /* Animation/Hover Styles */
@@ -29,29 +29,29 @@
 } */
 
 .label:hover:active .radioImg {
-    opacity: .5;
+  opacity: 0.5;
 }
 
-input[type='radio']:checked+label {
-    opacity: .5;
+input[type="radio"]:checked + label {
+  opacity: 0.5;
 }
 
 .label:hover .caption {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .caption {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: var(--color4);
-    font-size: 1.2rem;
-    font-family: 'Pokemon_Solid';
-    text-align: center;
-    text-shadow: 2px 2px var(--color3);
-    visibility: hidden;
-    opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color4);
+  font-size: 1.2rem;
+  font-family: "Pokemon_Solid";
+  text-align: center;
+  text-shadow: 2px 2px var(--color3);
+  visibility: hidden;
+  opacity: 0;
 
-    transition: opacity .2s, visibility .2s;
+  transition: opacity 0.2s, visibility 0.2s;
 }

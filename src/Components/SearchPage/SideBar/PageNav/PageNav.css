@@ -1,23 +1,69 @@
 .pageNav {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "previous current next"
+    "perPage perPage perPage";
+  gap: 5px;
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  width: 100%; */
 }
 
 .dropDown {
-    background-color: var(--color4);
-    border-radius: 10px;
-    font-size: 1rem;
-    font-family: 'Futura Condensed Med';
+  display: inline;
+  background-color: var(--color4);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Futura Condensed Med";
+  margin-left: 5px;
+}
+
+/* .navWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+} */
+
+.menuLabel {
+  display: inline;
+  grid-area: perPage;
+}
+
+.previous {
+  display: grid;
+  grid-area: previous;
+  justify-self: center;
+  padding: 5px;
+}
+
+.current {
+  display: grid;
+  grid-area: current;
+  align-self: center;
+  text-align: center;
+  font-family: "Early Gameboy";
+}
+
+.next {
+  display: grid;
+  grid-area: next;
+  justify-self: center;
 }
 
 .navBtn {
-    text-align: center;
-    font-size: 1rem;
-    font-family: 'Futura Condensed Med';
-    margin: 5px 0;
-    background-color: var(--color3);
-    color: var(--color4);
-    border: 2px solid var(--color4);
-    border-radius: 10px;
-    padding: 3px;
+  display: grid;
+  text-align: center;
+  font-size: 1rem;
+  font-family: "Futura Condensed Med";
+  margin: 5px 0;
+  background-color: var(--color3);
+  color: var(--color4);
+  border: 2px solid var(--color4);
+  border-radius: 10px;
+  padding: 5px;
 }

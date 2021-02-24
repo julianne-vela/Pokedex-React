@@ -14,7 +14,10 @@ export default class SideBar extends Component {
             searchValue,
             handleQueryChange,
             handlePerPage,
-            handlePageNav,
+            handlePrevious,
+            handleNext,
+            currentPage,
+            lastPage,
             sortByValues,
             sortSelected,
             handleSortSelected,
@@ -30,7 +33,10 @@ export default class SideBar extends Component {
                 {/* Page Nav */}
                 <PageNav className='pageNav'
                 handlePerPage={handlePerPage}
-                handlePageNav={handlePageNav}
+                handleNext={handleNext}
+                handlePrevious={handlePrevious}
+                currentPage={currentPage}
+                lastPage={lastPage}
                 />
 
                 {/* Search Bar */}

@@ -27,21 +27,18 @@ export default class SearchPage extends Component {
     componentDidMount = async () => {
         await this.fetchPokemonAndTypes()
     }
-    // componentDidUpdate = async (prevState) => {
-    //     const oldPageNumber = prevState.currentPage;
-    //     const newPageNumber = this.state.currentPage;
+    componentDidUpdate = async (prevProps, prevState) => {
+        const oldPageNumber = prevState.currentPage;
+        const newPageNumber = this.state.currentPage;
 
-    //     if (oldPageNumber !== newPageNumber) {
-    //         await this.fetchPokemonAndTypes();
-    //     }
-    // }
+        if (oldPageNumber !== newPageNumber) {
+            await this.fetchPokemonAndTypes();
+        }
+    }
 
     fetchPokemonAndTypes = async () => {
-        await this.setState({
-            loading: true,
-            pokeData: [],
-            perPage: 25,
-            pokeTypes: [],
+        this.setState({
+            loading: true
         })
 
         const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&page=${this.state.currentPage}&perPage=${this.state.perPage}`)
@@ -67,13 +64,15 @@ export default class SearchPage extends Component {
     }
     handlePerPage = async (e) => this.setState({perPage: e.target.value})
     
-    handlePageNav = async (e) => {
-        if (e.target.value === 'next') {
+    handleNext = async (e) => {
             await this.setState({
                 currentPage: this.state.currentPage + 1
             })
-        }
-        else await this.setState({
+            await this.fetchPokemonAndTypes();
+    }
+
+    handlePrevious = async (e) => {
+        await this.setState({
             currentPage: this.state.currentPage - 1
         })
         await this.fetchPokemonAndTypes();
@@ -100,10 +99,14 @@ export default class SearchPage extends Component {
             sortOrder,
             searchQuery,
             radioSelected,
+            totalPokemon,
+            perPage,
+            currentPage,
         } = this.state
 
-        const lastPage = Math.ceil(this.state.totalPokemon / this.state.perPage);
 
+        const lastPage = Math.ceil(totalPokemon / perPage)
+        
         return (
             <>
             {/* Marquee Scroll */}
@@ -116,8 +119,11 @@ export default class SearchPage extends Component {
                     handleQueryChange={this.handleQueryChange}
 
                     // Page Nav //
+                    handleNext={this.handleNext}
+                    handlePrevious={this.handlePrevious}
                     handlePerPage={this.handlePerPage}
-                    handlePageNav={this.handlePageNav}
+                    currentPage={currentPage}
+                    lastPage={lastPage}
 
                     // Sort Asc/Desc //
                     sortByValues={sortBy}
