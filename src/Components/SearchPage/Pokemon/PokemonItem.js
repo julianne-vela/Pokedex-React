@@ -13,6 +13,7 @@ export default class PokemonItem extends Component {
             pokeColor3,
         } = this.props
 
+        console.log(pokeName);
         return (
             <Link to={`pokemon/${pokeName}`}>
                 <div className='pokemonItem' style={{backgroundColor: `${pokeColor1}`}}>
