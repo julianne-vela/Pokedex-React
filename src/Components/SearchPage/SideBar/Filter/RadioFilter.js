@@ -8,19 +8,24 @@ export default class RadioFilter extends Component {
             pokeTypes,
             radioSelected,
             handleRadioSelected,
+            handleRadioClear
         } = this.props
 
         return (
-            <div className='radioFilter'>
-                <label className='menuLabel'>Filter By Type</label>
-                {pokeTypes.map(type =>
+            <section className='radioFilter'>
+                <label className='filterLabel'>
+                    Filter By Type 
+                <button className='clearBtn' onClick={handleRadioClear}>Clear</button>
+                </label>
+            <div className='radioWrapper'>{pokeTypes.map(type =>
                     <RadioOption className='radio'
                         value={type}
                         key={type}
                         onChange={handleRadioSelected} 
                         radioSelected={radioSelected} />
-                )}
-            </div>
+                    )}
+                </div>
+            </section>
         )
     }
 }

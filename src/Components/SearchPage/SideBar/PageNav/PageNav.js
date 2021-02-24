@@ -30,7 +30,7 @@ export default class PageNav extends Component {
                             Next
                     </button>
                 {/* </div> */}
-                <label className='menuLabel'>Results per Page: 
+                <label className='navLabel'>Results per Page: 
                 <select className='dropDown' onChange={handlePerPage}>
                     <option value='10'>10</option>
                     <option value='25'>25</option>

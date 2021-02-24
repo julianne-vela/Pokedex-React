@@ -17,9 +17,17 @@ export default class RadioOption extends Component {
 
         return(
             <>
-                <input className='radioInput' type='radio' value={value} onChange={onChange} checked={radioSelected === value} />
-                <label className='label' name={value}>
-                    <img className='radioImg' alt={typeImg.description} src={process.env.PUBLIC_URL + `./Assets/${value}.png`} />
+                <label className='radioLabel' 
+                    name={value}>
+                    <input className='radioInput' 
+                        type='radio' 
+                        value={value} 
+                        onChange={onChange} 
+                        checked={radioSelected === value} 
+                    />
+                    <img className='radioImg' 
+                        alt={typeImg.description} 
+                        src={process.env.PUBLIC_URL + `./Assets/${value}.png`} />
                     <figcaption className='caption'>{capFirstLetter(value)}</figcaption>
                 </label>
             </>

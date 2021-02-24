@@ -21,17 +21,19 @@
   margin-left: 5px;
 }
 
-/* .navWrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-} */
-
-.menuLabel {
+.navLabel {
   display: inline;
   grid-area: perPage;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: "Futura Condensed Med";
+  margin: 5px 0;
+  width: 100%;
+  background-color: var(--color4);
+  color: var(--color3);
+  border: 2px solid var(--color3);
+  border-radius: 10px;
+  padding: 3px;
 }
 
 .previous {

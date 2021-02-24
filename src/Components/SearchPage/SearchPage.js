@@ -56,12 +56,8 @@ export default class SearchPage extends Component {
     }
     handleQueryChange = async e => this.setState({searchQuery: e.target.value})
     handleSortSelected = async e => this.setState({sortSelected: e.target.value})
-    handleRadioSelected = async (e) => {
-        e.preventDefault()
-        this.setState({
-            radioSelected: e.target.value
-        })
-    }
+    handleRadioSelected = async e => this.setState({radioSelected: e.target.value})
+    handleRadioClear = async e => this.setState({radioSelected: ''})
     handlePerPage = async (e) => this.setState({perPage: e.target.value})
     
     handleNext = async (e) => {
@@ -79,13 +75,13 @@ export default class SearchPage extends Component {
     }
 
     sortAndUpdate = async e => {
-        this.setState({
+        await this.setState({
             sortOrder: e.target.value
         })
 
         const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${this.state.sortSelected}&direction=${this.state.sortOrder}`)
 
-        this.setState({
+        await this.setState({
             pokeData: pokeData.body.results
         })
     }
@@ -104,6 +100,13 @@ export default class SearchPage extends Component {
             currentPage,
         } = this.state
 
+        const radioFilter = pokeData.filter(pokeObject => {
+            if(!radioSelected) return true;
+            return pokeObject['type_1'] === radioSelected;
+        })
+
+        const filteredList = radioFilter.filter(pokeObject => {
+             return pokeObject['pokemon'].includes(searchQuery)});
 
         const lastPage = Math.ceil(totalPokemon / perPage)
         
@@ -111,7 +114,7 @@ export default class SearchPage extends Component {
             <>
             {/* Marquee Scroll */}
             < MarqueeScroll className='marquee-scroll' />
-            <main className='grid-container' >                
+            <main className='grid-container'>                
                 {/* SideBar Module */}
                 < SideBar className='sidebar float'
                     // Search Bar //
@@ -136,12 +139,13 @@ export default class SearchPage extends Component {
                     pokeTypes={pokeTypes}
                     radioSelected={radioSelected}
                     handleRadioSelected={this.handleRadioSelected}
+                    handleRadioClear={this.handleRadioClear}
                 />
 
                 {/* PokeList Module */}
                 < PokemonList className='pokemon-list float'
                     loading={loading}
-                    pokeData={pokeData}
+                    pokeData={filteredList}
                 />
             </main >
             </>

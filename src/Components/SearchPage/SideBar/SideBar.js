@@ -26,6 +26,7 @@ export default class SideBar extends Component {
             pokeTypes,
             radioSelected,
             handleRadioSelected,
+            handleRadioClear,
         } = this.props
 
         return (
@@ -59,6 +60,7 @@ export default class SideBar extends Component {
                     pokeTypes={pokeTypes}
                     radioSelected={radioSelected}
                     handleRadioSelected={handleRadioSelected}
+                    handleRadioClear={handleRadioClear}
                 />
             </aside>
         )
